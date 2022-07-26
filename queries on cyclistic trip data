@@ -65,3 +65,30 @@ WHERE member_casual = "member"
 SELECT AVG(ride_length) AS avg_ride_length
 FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
 WHERE member_casual = "casual"
+
+* Grouping casual member and annual member by route, trip_duration and num_trips
+
+SELECT member_casual,
+CONCAT (start_station_name, "to ", end_station_name) AS route,
+COUNT(*) AS num_trips,
+ROUND(AVG(CAST(ride_length AS int64)/60),2) AS trip_duration
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+GROUP BY start_station_name, end_station_name, member_casual
+ORDER BY num_trips DESC
+
+* Finding user type and their average ride length on days_of_week 
+
+SELECT day_of_week, ROUND(AVG(CAST(ride_length AS int64)/60),2) AS avg_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "casual"
+-- WHERE member_casual = "member"
+GROUP BY day_of_week 
+ORDER BY avg_ride_length DESC
+
+* Finfing the num_trips on each day of week
+
+SELECT day_of_week, COUNT(ride_id) AS num_trips
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "member"
+GROUP BY day_of_week 
+ORDER BY num_trips DESC
