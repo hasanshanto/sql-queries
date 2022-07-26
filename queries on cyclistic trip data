@@ -1,0 +1,21 @@
+* Find average ride length
+
+SELECT AVG(ride_length) AS avg_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+
+* Find max ride length
+
+SELECT MAX(ride_length) AS max_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+
+* Find min ride length
+
+SELECT MIN(ride_length) AS min_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+
+* Find average ride length in minutes
+
+SELECT AVG(CAST(ride_length AS int64)/60) AS avg_ride_length_min
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+
+
