@@ -90,5 +90,6 @@ ORDER BY avg_ride_length DESC
 SELECT day_of_week, COUNT(ride_id) AS num_trips
 FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
 WHERE member_casual = "member"
+-- WHERE member_casual = "casual"
 GROUP BY day_of_week 
 ORDER BY num_trips DESC
