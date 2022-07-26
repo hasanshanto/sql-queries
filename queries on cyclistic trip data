@@ -18,4 +18,50 @@ FROM `abstract-bonbon-350410.Cyclistics.may21-trips`
 SELECT AVG(CAST(ride_length AS int64)/60) AS avg_ride_length_min
 FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
 
+* Finding the day of the week with most rides
 
+SELECT day_of_week, COUNT(ride_id) AS num_rides
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+GROUP BY day_of_week
+ORDER BY num_rides DESC
+
+--> output
+day_of_week	num_rides	
+	
+7       112002
+1       104262
+2       76001
+6       66219
+4       62596
+5       58542
+3       52011
+
+
+* Finding the day of the week with most rides(member)
+
+SELECT day_of_week, COUNT(ride_id) AS num_rides
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "member"
+GROUP BY day_of_week
+ORDER BY num_rides DESC
+
+* Finding the day of the week with most rides(casual)
+
+SELECT day_of_week, COUNT(ride_id) AS num_rides
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "casual"
+GROUP BY day_of_week
+ORDER BY num_rides DESC
+
+* Find average ride length for member type
+
+SELECT AVG(ride_length) AS avg_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "member"
+
+
+* Find average ride length for casual type
+
+SELECT AVG(ride_length) AS avg_ride_length
+FROM `abstract-bonbon-350410.Cyclistics.may21-trips` 
+WHERE member_casual = "casual"
