@@ -293,3 +293,24 @@ FROM Customers
 UNION
 SELECT 'Supplier', ContactName, City, Country
 FROM Suppliers;
+
+**** GROUP BY ****
+
+The following SQL statement lists the number of orders sent by each shipper:
+-->
+SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+GROUP BY ShipperName;
+
+1. List the number of customers in each country.
+-->
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+
+2. List the number of customers in each country, ordered by the country with the most customers first.
+-->
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+ORDER BY COUNT(CustomerID) DESC;
