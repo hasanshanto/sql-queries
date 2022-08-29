@@ -101,3 +101,121 @@ WHERE Country = 'Norway';
 UPDATE Customers
 SET City = 'Oslo', COUNTRY = 'Norway'
 WHERE CustomerID = 32;
+
+
+**** DELETE ****
+
+1. Delete all the records from the Customers table where the Country value is 'Norway'.
+-->
+DELETE 
+FROM Customers
+WHERE Country = 'Norway';
+
+2. Delete all the records from the Customers table.
+-->
+DELETE 
+FROM Customers;
+
+
+**** FUNCTIONS ****
+
+1. Use the MIN function to select the record with the smallest value of the Price column.
+-->
+SELECT MIN(Price)
+FROM Products;
+
+2. Use an SQL function to select the record with the highest value of the Price column.
+-->
+SELECT MAX(Price)
+FROM Products;
+
+3. Use the correct function to return the number of records that have the Price value set to 18.
+-->
+SELECT COUNT(*)
+FROM Products
+WHERE Price = 18;
+ 
+4. Use an SQL function to calculate the average price of all products.
+-->
+SELECT AVG(Price)
+FROM Products;
+
+5. Use an SQL function to calculate the sum of all the Price column values in the Products table.
+-->
+SELECT SUM(Price)
+FROM Products;
+
+
+**** LIKE ****
+
+1. Select all records where the value of the City column starts with the letter "a".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE 'a%';
+
+2. Select all records where the value of the City column ends with the letter "a".
+-->
+SELECT * 
+FROM Customers
+WHERE CITY LIKE '%a';
+
+3. Select all records where the value of the City column contains the letter "a".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE '%a%';
+
+4. Select all records where the value of the City column starts with letter "a" and ends with the letter "b".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE 'a%b';
+
+5. Select all records where the value of the City column does NOT start with the letter "a".
+-->
+SELECT * 
+FROM Customers
+WHERE CITY NOT LIKE 'a%';
+
+
+**** WILDCARDS ****
+
+1. Select all records where the second letter of the City is an "a".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE '_a%';
+
+2. Select all records where the first letter of the City is an "a" or a "c" or an "s".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE '[acs]%';
+
+3. Select all records where the first letter of the City starts with anything from an "a" to an "f".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE '[a-f]%';
+
+4. Select all records where the first letter of the City is NOT an "a" or a "c" or an "f".
+-->
+SELECT * 
+FROM Customers
+WHERE City LIKE '[^acf]%';
+
+
+**** IN ****
+
+1. Use the IN operator to select all the records where Country is either "Norway" or "France".
+-->
+SELECT * 
+FROM Customers
+WHERE Country IN('Norway', 'France');
+
+2. Use the IN operator to select all the records where Country is NOT "Norway" and NOT "France".
+-->
+SELECT * 
+FROM Customers
+WHERE COUNTRY NOT IN ('Norway', 'France');
