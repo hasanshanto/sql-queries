@@ -42,3 +42,62 @@ WHERE City = 'Berlin' AND PostalCode = 12209;
 SELECT * FROM Customers
 WHERE City = 'Berlin'
 OR CITY = 'London';
+
+
+**** ORDER BY ****
+
+1. Select all records from the Customers table, sort the result alphabetically by the column City.
+-->
+SELECT * FROM Customers
+ORDER BY CITY;
+
+2. Select all records from the Customers table, sort the result reversed alphabetically by the column City.
+-->
+SELECT * FROM Customers
+ORDER BY CITY DESC;
+
+3. Select all records from the Customers table, sort the result alphabetically, first by the column Country, then, by the column City.
+-->
+SELECT * FROM Customers
+ORDER BY COUNTRY,CITY;
+
+
+**** INSERT ****
+
+1. Insert a new record in the Customers table.
+-->
+
+INSERT INTO Customers (CustomerName, Address, City, PostalCode, Country)
+VALUES('Hekkan Burger','Gateveien 15','Sandnes','4306','Norway');
+
+
+**** NULL ****
+
+1. Select all records from the Customers where the PostalCode column is empty.
+-->
+SELECT * FROM Customers
+WHERE PostalCode IS NULL;
+
+2. Select all records from the Customers where the PostalCode column is NOT empty.
+-->
+SELECT * FROM Customers
+WHERE PostalCode IS NOT NULL;
+
+**** UPDATE ****
+
+1. Update the City column of all records in the Customers table.
+-->
+UPDATE Customers
+SET City = 'Oslo';
+ 
+2. Set the value of the City columns to 'Oslo', but only the ones where the Country column has the value "Norway".
+-->
+UPDATE Customers
+SET City = 'Oslo'
+WHERE Country = 'Norway';
+ 
+3. Update the City value and the Country value.
+-->
+UPDATE Customers
+SET City = 'Oslo', COUNTRY = 'Norway'
+WHERE CustomerID = 32;
