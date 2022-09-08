@@ -399,3 +399,102 @@ FROM EMPLOYEES
 GROUP BY DEP_ID
 HAVING count(*) < 4
 ORDER BY AVG_SALARY;
+
+
+***BUILT IN FUNCTIONS***
+***AGGREGATE FUNCTIONS***
+
+1.  Enter a function that calculates the total cost of all animal rescues in the PETRESCUE table.
+
+ANS:
+SELECT SUM(COST)
+FROM PETRESCUE;
+
+2. Enter a function that displays the total cost of all animal rescues in the PETRESCUE table in a column called SUMOFCOST.
+
+ANS:
+SELECT SUM(COST) AS SUM_OF_COST
+FROM PETRESCUE;
+
+3. Enter a function that displays the maximum quantity of animals rescued.
+
+ANS:
+SELECT MAX(QUANTITY)
+FROM PETRESCUE;
+
+4. Enter a function that displays the average cost of animals rescued.
+
+ANS: 
+SELECT AVG(COST)
+FROM PETRESCUE;
+
+5. Enter a function that displays the average cost of rescuing a dog.
+
+ANS:
+SELECT AVG(COST/QUANTITY)
+FROM PETRESCUE
+WHERE ANIMAL = 'Dog';
+
+6. Enter a function that displays the rounded cost of each rescue.
+
+ANS: 
+SELECT ROUND(COST)
+FROM PETRESCUE;
+
+7. Enter a function that displays the length of each animal name.
+
+ANS:
+SELECT LENGTH(ANIMAL)
+FROM PETRESCUE;
+
+8. Enter a function that displays the animal name in each rescue in uppercase.
+
+ANS:
+SELECT UCASE(ANIMAL)
+FROM PETRESCUE;
+
+9. Enter a function that displays the animal name in each rescue in uppercase without duplications.
+
+ANS:
+SELECT DISTINCT(UCASE(ANIMAL))
+FROM PETRESCUE;
+
+10. Enter a query that displays all the columns from the PETRESCUE table, where the animal(s) rescued are cats. Use cat in lower case in the query.
+
+ANS:
+SELECT *
+FROM PETRESCUE
+WHERE LCASE(ANIMAL) = 'cat';
+
+11. Enter a function that displays the day of the month when cats have been rescued.
+
+ANS:
+SELECT DAY(RESCUEDATE)
+FROM PETRESCUE
+WHERE ANIMAL = 'Cat';
+
+12. Enter a function that displays the number of rescues on the 5th month.
+
+ANS:
+SELECT SUM(QUANTITY)
+FROM PETRESCUE
+WHERE MONTH(RESCUEDATE) = '05';
+
+13. Enter a function that displays the number of rescues on the 14th day of the month.
+
+ANS:
+SELECT SUM(QUANTITY)
+FROM PETRESCUE
+WHERE DAY(RESCUEDATE) = '14';
+
+14. Animals rescued should see the vet within three days of arrivals. Enter a function that displays the third day from each rescue.
+
+ANS:
+SELECT DATE_ADD(RESCUEDATE, INTERVAL 3 DAY)
+FROM PETRESCUE;
+
+15. Enter a function that displays the length of time the animals have been rescued; the difference between todayâ€™s date and the rescue date.
+
+ANS:
+SELECT DATEDIFF(CURRENT_TIME, RESCUEDATE)
+FROM PETRESCUE;
