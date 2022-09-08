@@ -498,3 +498,115 @@ FROM PETRESCUE;
 ANS:
 SELECT DATEDIFF(CURRENT_TIME, RESCUEDATE)
 FROM PETRESCUE;
+
+
+
+***SUB-QUERIES, NESTED QUERIES***
+
+1. Execute a failing query (i.e. one which gives an error) to retrieve all employees records whose salary is lower than the average salary.
+
+ANS:
+select * 
+from EMPLOYEES 
+where salary < AVG(salary);
+
+2. Execute a working query using a sub-select to retrieve all employees records whose salary is lower than the average salary.
+
+ANS:
+SELECT *
+FROM EMPLOYESS
+WHERE SALARY < 
+(SELECT AVG(SALARY) 
+FROM EMPLOYEES);
+
+3. Execute a failing query (i.e. one which gives an error) to retrieve all employees records with EMPID, SALARY and maximum salary as MAXSALARY in every row.
+
+ANS: 
+select EMP_ID, SALARY, MAX(SALARY) AS MAX_SALARY 
+from EMPLOYEES;  
+
+4. Execute a Column Expression that retrieves all employees records with EMPID, SALARY and maximum salary as MAXSALARY in every row.
+
+ANS:
+SELECT EMPID, SALARY,
+(SELECT MAX(SALARY) FROM EMPLOYEES) AS MAX_SALARY
+FROM EMPLOYEES;
+
+5. Execute a Table Expression for the EMPLOYEES table that excludes columns with sensitive employee data (i.e. does not include columns: SSN, B_DATE, SEX, ADDRESS, SALARY).
+
+ANS:
+SELECT * FROM
+(SELECT EMP_ID, F_NAME, L_NAME, SALARY FROM EMPLOYEES) AS EMP4ALL;
+
+
+***USING MULTIPLE TABLES***
+
+1. Retrieve only the EMPLOYEES records that correspond to jobs in the JOBS table.
+
+ANS:
+select * 
+from EMPLOYEES 
+where JOB_ID IN (select JOB_IDENT from JOBS);
+
+2. Retrieve only the list of employees whose JOB_TITLE is Jr. Designer.
+
+ANS:
+SELECT *
+FROM EMPLOYEES
+WHERE JOB_ID IN (SELECT JOB_IDENT FROM JOBS WHERE JOB_TITLE = 'Jr. Designer')
+
+3. Retrieve JOB information and list of employees who earn more than $70,000.
+
+ANS:
+SELECT JOB_TITLE 
+FROM JOBS
+WHERE JOB_IDENT IN (SELECT JOB_ID FROM EMPLOYEES WHERE SALARY > 70000);
+
+4. Retrieve JOB information and list of employees whose birth year is after 1976.
+
+ANS:
+SELECT JOB_TITLE
+FROM JOBS 
+WHERE JOB_IDENT IN (SELECT JOB_ID FROM EMPLOYEES WHERE YEAR(B_DATE) > 1976);
+
+5. Retrieve JOB information and list of female employees whose birth year is after 1976.
+ANS:
+SELECT JOB_TITLE
+FROM JOBS
+WHERE JOB_IDENT IN(SELECT JOB_ID FROM EMPLOYEES WHERE SEX = 'F' AND YEAR(B_DATE) > 1976);
+
+6. Perform an implicit cartesian/cross join between EMPLOYEES and JOBS tables.
+
+ANS:
+SELECT * 
+FROM EMPLOYEES, JOBS
+
+7. Retrieve only the EMPLOYEES records that correspond to jobs in the JOBS table.
+
+ANS:
+SELECT *
+FROM EMPLOYEES, JOBS
+WHERE EMPLOYEES.JOB_ID = JOBS.JOB_IDENT;
+
+8. Redo the previous query, using shorter aliases for table names.
+
+ANS:
+SELECT *
+FROM EMPLOYEES E, JOBS J
+WHERE E.JOB_ID = J.JOB_IDENT;
+
+9. Redo the previous query, but retrieve only the Employee ID, Employee Name and Job Title.
+
+ANS:
+SELECT EMP_ID, F_NAME, L_NAME, JOB_TITLE
+FROM EMPLOYEES E, JOBS J
+WHERE E.JOB_ID = J.JOB_IDENT;
+
+10. Redo the previous query, but specify the fully qualified column names with aliases in the SELECT clause.
+
+ANS:
+SELECT E.EMP_ID, E.F_NAME, E.L_NAME, J.JOB_TITLE
+FROM EMPLOYEES E, JOBS J
+WHERE E.JOB_ID = J.JOB_IDENT;
+
+
