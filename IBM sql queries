@@ -361,3 +361,41 @@ SELECT D.DEP_NAME , E.F_NAME, E.L_NAME
 FROM EMPLOYEES as E, DEPARTMENTS as D
 WHERE E.DEP_ID = D.DEPT_ID_DEP
 ORDER BY D.DEP_NAME, E.L_NAME DESC;
+
+7. For each department ID retrieve the number of employees in the department.
+
+ANS: 
+SELECT DEP_ID, COUNT(*)
+FROM EMPLOYEES
+GROUP BY DEP_ID;
+
+8. For each department retrieve the number of employees in the department, and the average employee salary in the department..
+
+ANS:
+SELECT DEP_ID, COUNT(*), AVG(SALARY)
+FROM EMPLOYEES
+GROUP BY DEP_ID;
+
+9. Label the computed columns in the result set of SQL problem 2 (Exercise 3 Problem 2) as NUMEMPLOYEES and AVGSALARY.
+
+ANS:
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
+FROM EMPLOYEES
+GROUP BY DEP_ID;
+
+10. In SQL problem 3 (Exercise 3 Problem 3), order the result set by Average Salary..
+
+ANS:
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
+FROM EMPLOYEES
+GROUP BY DEP_ID
+ORDER BY AVG_SALARY;
+
+11. In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.
+
+ANS:
+SELECT DEP_ID, COUNT(*) AS "NUM_EMPLOYEES", AVG(SALARY) AS "AVG_SALARY"
+FROM EMPLOYEES
+GROUP BY DEP_ID
+HAVING count(*) < 4
+ORDER BY AVG_SALARY;
