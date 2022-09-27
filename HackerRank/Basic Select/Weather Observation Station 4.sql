@@ -1,0 +1,4 @@
+-- github.com/hasanshanto
+
+SELECT (COUNT(CITY) - COUNT(DISTINCT CITY)) AS N_CITY
+FROM STATION;
