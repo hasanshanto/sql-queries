@@ -1,0 +1,5 @@
+-- github.com/hasanshanto
+
+SELECT SUM(POPULATION)
+FROM CITY
+WHERE COUNTRYCODE = 'JPN';
