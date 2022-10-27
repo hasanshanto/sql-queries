@@ -32,7 +32,7 @@ from comments_;
 
 
 --> Solution 2
-
+-- coalesce return the first non null value in a list
 select coalesce(translation, comment) as comments
 from comments_;
 
